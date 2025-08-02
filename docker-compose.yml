@@ -1,0 +1,31 @@
+services:
+  frontend:
+    build:
+      context: "./frontend"
+      dockerfile: Dockerfile.frontend
+    container_name: react_frontend
+    ports:
+      - "5173:5173"
+
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: Dockerfile.backend
+    container_name: django_backend
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-mydatabase}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    ports:
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,15 +1,12 @@
 # react-django-starter
 A base react/django starter project for basing new builds off of
 
-Start frontend:
+Start:
 ```bash
-cd frontend
-npm run dev
+docker-compose up --build
 ```
 
-Start backend:
-```bash
-cd backend
-source venv/bin/activate
-python manage.py runserver
-```
+
+## KNOWN ISSUES
+- Duplicate env files (in both main and backend directories, with identical information)
+
